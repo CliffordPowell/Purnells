@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        z-index: 1001;
+        color: #003366;
+        cursor: pointer;
+      }
+      @media (max-width: 700px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100vw;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          margin: 0;
+          padding: 1rem 0;
+          z-index: 1000;
+        }
+        nav ul.open {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+        header {
+          padding-top: 2.5rem;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Property Maintenance | Purnells</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+    <img src="assets/Purnells%20Property%20Maintenance%20Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+    <h1>Purnells Property Maintenance</h1>
+    <nav>
+      <ul id="mainNav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="property-maintenance.html" class="active" aria-current="page">Property Maintenance</a></li>
+        <li><a href="building-services.html">Building Services</a></li>
+        <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+        <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+        <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+        <li><a href="roofing.html">Roofing</a></li>
+        <li><a href="landscaping.html">Landscaping</a></li>
+        <li><a href="recent-projects.html">Recent Projects</a></li>
+        <li><a href="get-in-touch.html">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Property Maintenance</h2>
+      <p>At Purnells Property Maintenance in Newport, we provide reliable property maintenance services to keep your home in good condition. From routine repairs to preventative upkeep, our experienced team handles all aspects of maintenance with care and efficiency.</p>
+      <p>Trust us to keep your property safe, functional, and looking its finest year-round.</p>
+      <p>At Purnells Property Maintenance, we offer comprehensive property refurbishment services tailored to your needs. Whether you require a new roof, minor repairs, or a full kitchen or bathroom installation, our team provides expert workmanship and attention to detail. From plastering and tiling to full extensions, we ensure every project is completed to the highest standard. Beyond your home’s interior, we specialise in creating stunning outdoor spaces with beautifully landscaped patios and driveways, delivering secure and stylish results. Contact us to bring your renovation vision to life from start to finish.</p>
+      <h3>Domestic Maintenance And Repair Services</h3>
+      <p>Purnells Property Maintenance provides expert domestic maintenance and repair services, ensuring your home stays in excellent condition. From essential repairs to preventative maintenance, we cover all your home’s needs. Our damp-proofing services protect your property from moisture damage, ensuring a dry and healthy living environment. With our professional approach, we can tackle any issue, from minor fixes to complex repairs, always delivering long-lasting solutions. Whether you need regular upkeep or urgent repairs, our skilled team is here to keep your home safe, secure, and functional.</p>
+      <h3>Why Choose Our Property Maintenance Services</h3>
+      <p>Choosing Purnells Property Maintenance means choosing experience, reliability, and a commitment to quality. As a family-run business with over 30 years in the industry, we take pride in providing exceptional property maintenance services across Newport. Our skilled team ensures every project is completed with care and precision, whether it’s repairs, refurbishments, or renovations. We offer personalised solutions, working closely with you to meet your specific needs.</p>
+      <p>With a reputation for excellence and a focus on customer satisfaction, we are a trusted choice for keeping your property in good condition.</p>
+      <img src="assets/Property%20Maintenance.avif" alt="Property Maintenance" style="max-width:100%;height:auto;">
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var nav = document.getElementById('mainNav');
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>
+      <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+      <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+      &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+    </p>
+  </footer>
+</body>
+</html>

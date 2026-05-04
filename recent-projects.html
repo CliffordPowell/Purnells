@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <style>
+        /* Hamburger styles for mobile */
+        .hamburger {
+          display: none;
+          background: none;
+          border: none;
+          font-size: 2rem;
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          z-index: 1001;
+          color: #003366;
+          cursor: pointer;
+        }
+        @media (max-width: 700px) {
+          nav ul {
+            display: none;
+            flex-direction: column;
+            background: #fff;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            width: 100vw;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 0;
+            padding: 1rem 0;
+            z-index: 1000;
+          }
+          nav ul.open {
+            display: flex;
+          }
+          .hamburger {
+            display: block;
+          }
+          header {
+            padding-top: 2.5rem;
+          }
+        }
+      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recent Projects | Purnells</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+      <img src="assets/Purnells Property Maintenance Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+      <h1>Purnells Property Maintenance</h1>
+      <nav>
+        <ul id="mainNav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="property-maintenance.html">Property Maintenance</a></li>
+          <li><a href="building-services.html">Building Services</a></li>
+          <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+          <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+          <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+          <li><a href="roofing.html">Roofing</a></li>
+          <li><a href="landscaping.html">Landscaping</a></li>
+          <li><a href="recent-projects.html" class="active" aria-current="page">Recent Projects</a></li>
+          <li><a href="get-in-touch.html">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </header>
+  <main>
+    <section id="slideshow" class="slideshow">
+      <h2>Recent Projects</h2>
+      <div class="slide active" id="slide-1">
+        <h3>Re-render & Roof Replacement in Ridgeway <span style="font-weight:normal; font-size:1rem; color:#666;">(Feb to June 2026)</span></h3>
+        <p>We initially asked Chris and his team to quote for removing and replacing the render on our period property, along with a full roof replacement. After obtaining several quotes, we found Purnell’s to be very reasonably priced.</p>
+        <p>Although the roofing work is yet to begin, we’ve been so impressed with their approach that we’ve since asked them to take on additional parts of our renovation, including plastering, a loft conversion, and converting our garage into a utility space.</p>
+        <p>Chris and his team have been knowledgeable, trustworthy, and exceptionally clean throughout. We wouldn’t hesitate to recommend them. 10/10.</p>
+      <hr style="margin:2em 0;">
+      <h3>Garden Renovation Rogerstone <span style="font-weight:normal; font-size:1rem; color:#666;">(April 2026)</span></h3>
+      <p>Purnells were recommended to me. They've been prompt, polite, and done an amazing job transforming my garden in time for the Summer.</p>
+      </div>
+      <!-- Future slides can be added here -->
+      <div class="slideshow-controls">
+        <button id="prevBtn" onclick="showPrevSlide()" disabled>&laquo; Previous</button>
+        <button id="nextBtn" onclick="showNextSlide()" disabled>Next &raquo;</button>
+      </div>
+    </section>
+    <script>
+      // (Slideshow removed as requested)
+    </script>
+  </main>
+  <script>
+    // Hamburger menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var nav = document.getElementById('mainNav');
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      // Optional: close menu when a link is clicked (for better UX)
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>
+      <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+      <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+      &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+    </p>
+  </footer>
+</body>
+</html>

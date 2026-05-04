@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        z-index: 1001;
+        color: #003366;
+        cursor: pointer;
+      }
+      @media (max-width: 700px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100vw;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          margin: 0;
+          padding: 1rem 0;
+          z-index: 1000;
+        }
+        nav ul.open {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+        header {
+          padding-top: 2.5rem;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building Services | Purnells</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+    <img src="assets/Purnells%20Property%20Maintenance%20Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+    <h1>Purnells Property Maintenance</h1>
+    <nav>
+      <ul id="mainNav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="property-maintenance.html">Property Maintenance</a></li>
+        <li><a href="building-services.html" class="active" aria-current="page">Building Services</a></li>
+        <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+        <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+        <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+        <li><a href="roofing.html">Roofing</a></li>
+        <li><a href="landscaping.html">Landscaping</a></li>
+        <li><a href="recent-projects.html">Recent Projects</a></li>
+        <li><a href="get-in-touch.html">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Professional Building Services In Newport</h2>
+      <p>Purnells Property Maintenance in Newport offers expert building services for all your home improvement needs. From extensions and conversions to roofing and renovations, our skilled team delivers quality craftsmanship and reliable service.</p>
+      <p>Whether you're upgrading or expanding, trust us to bring your project to life with precision and attention to detail.</p>
+      <h3>Building Refurbishments And Building Renovations</h3>
+      <p>At Purnells Property Maintenance, we specialise in building refurbishments and renovations that transform your property inside and out. Whether you're looking to modernise your home, upgrade your space, or repair wear and tear, our skilled team is equipped to handle all aspects of refurbishment. We provide high-quality craftsmanship tailored to your needs, from structural improvements to aesthetic enhancements. With over 30 years of experience, we ensure each project is completed on time and to the highest standard, helping you achieve the home you’ve always envisioned. Contact us.</p>
+      <h3>Conversions And Extension</h3>
+      <p>Our conversion and extension services at Purnells Property Maintenance offer the perfect solution for homeowners looking to expand or repurpose their space. From basement and loft conversions to garage conversions and house extensions, we help you maximise your home’s potential. We also design and build conservatories that seamlessly blend with your existing structure. Each project is carefully planned and executed, ensuring it meets your specific requirements and is finished to a high standard. Our conversions and extensions provide durable and beautiful results, whether for added living space or a new function.</p>
+      <h3>Home Improvement Services</h3>
+      <p>Our home improvement services cover a wide range of specialised tasks, ensuring your property remains in excellent condition. From expert bricklaying and chimney repairs to cladding and conservatory restorations, we tackle projects of any size with precision. We also provide professional repointing, pointing, and wall rendering to strengthen and beautify your home’s exterior. With a commitment to quality workmanship, we address all areas of improvement, enhancing both the structural integrity and visual appeal of your property.</p>
+      <p>Contact us for reliable, high-standard home improvements in Newport.</p>
+      <h3>Why Wait? Book Our Services Today!</h3>
+      <p>If you're ready to enhance your home, why wait? Book our services today and let Purnells Property Maintenance bring your vision to life. From building renovations and refurbishments to conversions, extensions, and home improvements, we offer comprehensive solutions tailored to your needs. With over 30 years of industry experience, we’re proud to deliver exceptional craftsmanship and service to clients across Newport and South Wales. Contact us now to schedule a consultation and find out why we’re the trusted choice for all your building and maintenance needs. Don't delay – get started today!</p>
+      <img src="assets/Extension.avif" alt="Home Extension" style="max-width:100%;height:auto;">
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var nav = document.getElementById('mainNav');
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>
+      <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+      <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+      &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+    </p>
+  </footer>
+</body>
+</html>

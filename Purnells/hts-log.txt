@@ -1,0 +1,24 @@
+HTTrack3.49-2+htsswf+htsjava launched on Mon, 04 May 2026 21:37:39 at https://www.purnellspropertymaintenance.co.uk/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://www.purnellspropertymaintenance.co.uk/ -O1 "C:\My Web Sites\Purnells" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:38:24	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/t (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:24	Warning: 	Retry after error -5 (error:00000005:lib(0):func(0):DH lib) at link https://www.purnellspropertymaintenance.co.uk/o (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:38	Error: 	"Bad Request" (400) at link https://www.purnellspropertymaintenance.co.uk/window.location.href (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:38	Warning: 	Moved Permanently for https://www.purnellspropertymaintenance.co.uk/api/
+21:38:38	Warning: 	File has moved from https://www.purnellspropertymaintenance.co.uk/api/ to https://www.purnellspropertymaintenance.co.uk/api
+21:38:38	Warning: 	Moved Permanently for https://www.purnellspropertymaintenance.co.uk/envelope/
+21:38:38	Warning: 	File has moved from https://www.purnellspropertymaintenance.co.uk/envelope/ to https://www.purnellspropertymaintenance.co.uk/envelope
+21:38:42	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/feed.xml (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:42	Error: 	"Bad Request" (400) at link https://www.purnellspropertymaintenance.co.uk/decodeURIComponent(e (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:42	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/o (from https://www.purnellspropertymaintenance.co.uk/)
+21:38:42	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/e (from https://www.purnellspropertymaintenance.co.uk/property-maintenance)
+21:38:42	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/api (from https://www.purnellspropertymaintenance.co.uk/api/)
+21:38:42	Error: 	"Not Found" (404) at link https://www.purnellspropertymaintenance.co.uk/envelope (from https://www.purnellspropertymaintenance.co.uk/envelope/)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 3 seconds : 84 links scanned, 72 files written (11035806 bytes overall) [4462281 bytes received at 70829 bytes/sec], 8922494 bytes transferred using HTTP compression in 46 files, ratio 25%, 1.4 requests per connection
+(8 errors, 5 warnings, 0 messages)

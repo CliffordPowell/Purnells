@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        z-index: 1001;
+        color: #003366;
+        cursor: pointer;
+      }
+      @media (max-width: 700px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100vw;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          margin: 0;
+          padding: 1rem 0;
+          z-index: 1000;
+        }
+        nav ul.open {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+        header {
+          padding-top: 2.5rem;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purnells Property Maintenance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+    <img src="assets/Purnells%20Property%20Maintenance%20Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+    <h1>Purnells Property Maintenance</h1>
+    <nav>
+      <ul id="mainNav">
+        <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+        <li><a href="property-maintenance.html">Property Maintenance</a></li>
+        <li><a href="building-services.html">Building Services</a></li>
+        <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+        <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+        <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+        <li><a href="roofing.html">Roofing</a></li>
+        <li><a href="landscaping.html">Landscaping</a></li>
+        <li><a href="recent-projects.html">Recent Projects</a></li>
+        <li><a href="get-in-touch.html">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <!-- Removed old welcome section and placeholder image -->
+    <section>
+      <h2 style="text-align:center;">Honest | Reliable | An Eye For Detail ⭐️⭐️⭐️⭐️⭐️</h2>
+      <h3 style="text-align:center; color:#679A79;">Home Improvements In Newport</h3>
+      <p style="text-align:center; max-width:700px; margin:0 auto;">Purnells Property Maintenance is your trusted local contractor in Newport, specialising in home improvements and property repairs. With years of experience serving South Wales, we provide expert refurbishment, building services, and maintenance solutions.</p>
+      <p style="text-align:center; max-width:700px; margin:0.5em auto 1.5em auto; font-weight:bold;">Our skilled team ensures quality workmanship and reliable service every time.</p>
+    </section>
+    <section>
+      <h3 style="color:#679A79;">Reliable Property Refurbishments And Renovations In South Wales</h3>
+      <p>At Purnells Property Maintenance in Newport, we provide exceptional home improvements with over 30 years of experience. From property refurbishments to complete renovations, we ensure every project is completed to the highest standard. Our expertise extends beyond your home, creating stunning outdoor spaces with secure and beautifully landscaped patios and driveways. As a full trades building contractor, we handle all property repairs, refurbishments, and renovations. <strong>Contact us today to learn why we’re highly recommended across South Wales.</strong></p>
+    </section>
+    <section>
+      <h2 style="text-align:center;">What We Offer</h2>
+      <div style="display:flex; flex-wrap:wrap; justify-content:space-around; gap:2em; margin:2em 0;">
+        <div style="flex:1 1 220px; max-width:260px; min-width:200px; text-align:center;">
+          <img src="assets/Property Maintenance.avif" alt="Property Maintenance" style="width:100%; max-width:180px; height:auto; margin-bottom:0.5em;">
+          <h4>Property Maintenance</h4>
+          <p>From small repairs to ongoing maintenance, we keep your property in top condition. Our team handles everything from plumbing and electrical to general upkeep, ensuring your home or business runs smoothly.</p>
+        </div>
+        <div style="flex:1 1 220px; max-width:260px; min-width:200px; text-align:center;">
+          <img src="assets/bathroom.avif" alt="A bathroom in an expensive new home" style="width:100%; max-width:180px; height:auto; margin-bottom:0.5em;">
+          <h4>Kitchens &amp; Bathrooms</h4>
+          <p>We design and install modern kitchens and bathrooms tailored to your needs. Our expert team ensures every detail is perfect, providing stylish, functional spaces that enhance your home.</p>
+        </div>
+        <div style="flex:1 1 220px; max-width:260px; min-width:200px; text-align:center;">
+          <img src="assets/carpentry.avif" alt="Wooden Staircase" style="width:100%; max-width:180px; height:auto; margin-bottom:0.5em;">
+          <h4>Carpentry &amp; Joinery</h4>
+          <p>​​Our skilled carpenters deliver high-quality joinery solutions, including custom cabinetry, doors, and shelving. Whether it's for renovations or new builds, we offer craftsmanship that brings your vision to life.</p>
+        </div>
+        <div style="flex:1 1 220px; max-width:260px; min-width:200px; text-align:center;">
+          <img src="assets/roller.avif" alt="Man painting wall with grey colour using a small paint roller" style="width:100%; max-width:180px; height:auto; margin-bottom:0.5em;">
+          <h4>Painting &amp; Decorating</h4>
+          <p>Transform your interiors with our professional painting and decorating services. We use premium materials and expert techniques to refresh your spaces, adding style and elegance to every room.</p>
+        </div>
+        <div style="flex:1 1 220px; max-width:260px; min-width:200px; text-align:center;">
+          <img src="assets/Roof1.avif" alt="Tiled roof with ridge and vent pipe, clear sky in the background" style="width:100%; max-width:180px; height:auto; margin-bottom:0.5em;">
+          <h4>Roofing Services</h4>
+          <p>We provide comprehensive roofing services, including repairs, replacements, and maintenance. Our experienced team ensures your roof is durable and weatherproof, offering lasting protection for your property.</p>
+        </div>
+      </div>
+    </section>
+  </script>
+  <footer>
+    <p>
+      <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+      <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+      &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+    </p>
+  </footer>
+</body>
+</html>

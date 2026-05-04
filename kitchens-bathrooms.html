@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+      .hamburger {
+        display: none;
+        background: none;
+        border: none;
+        font-size: 2rem;
+        position: absolute;
+        right: 1.5rem;
+        top: 1.5rem;
+        z-index: 1001;
+        color: #003366;
+        cursor: pointer;
+      }
+      @media (max-width: 700px) {
+        nav ul {
+          display: none;
+          flex-direction: column;
+          background: #fff;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          width: 100vw;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          margin: 0;
+          padding: 1rem 0;
+          z-index: 1000;
+        }
+        nav ul.open {
+          display: flex;
+        }
+        .hamburger {
+          display: block;
+        }
+        header {
+          padding-top: 2.5rem;
+        }
+      }
+    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitchens & Bathrooms | Purnells</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+    <img src="assets/Purnells%20Property%20Maintenance%20Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+    <h1>Purnells Property Maintenance</h1>
+    <nav>
+      <ul id="mainNav">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="property-maintenance.html">Property Maintenance</a></li>
+        <li><a href="building-services.html">Building Services</a></li>
+        <li><a href="kitchens-bathrooms.html" class="active" aria-current="page">Kitchens & Bathrooms</a></li>
+        <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+        <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+        <li><a href="roofing.html">Roofing</a></li>
+        <li><a href="landscaping.html">Landscaping</a></li>
+        <li><a href="recent-projects.html">Recent Projects</a></li>
+        <li><a href="get-in-touch.html">Get in Touch</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Kitchen & Bathroom Installations In Newport</h2>
+      <p>Purnells Property Maintenance in Newport specialises in high-quality kitchen and bathroom installations. From design to completion, our expert team handles every detail, creating functional and stylish spaces tailored to your needs.</p>
+      <p>Trust us for professional installations that enhance your home’s comfort and value, delivered with precision and care.</p>
+      <h3>Exquisite Kitchen And Bathroom Design</h3>
+      <p>At Purnells Property Maintenance, we believe that exceptional kitchen and bathroom design is the foundation of a beautiful home. Our experienced team collaborates with you to create custom designs that reflect your style and meet your functional needs. From selecting the perfect fixtures to optimising layout and flow, we pay meticulous attention to detail. We combine innovative ideas with practical solutions to ensure your space is both aesthetically pleasing and highly functional. Let us transform your vision into reality with stunning designs that elevate your home’s beauty and value. Contact us.</p>
+      <h3>Efficient Kitchen And Bathroom Installations</h3>
+      <p>When it comes to kitchen and bathroom installations, efficiency and quality are our main priorities. At Purnells Property Maintenance, we handle every aspect of the installation process with precision and care, ensuring minimal disruption to your daily routine. Our skilled team uses the latest techniques and high-quality materials to ensure every detail is perfect. From plumbing and electrical work to tiling and cabinetry, we manage the project from start to finish, guaranteeing a seamless and stress-free experience.</p>
+      <h3>What Sets Our Services Apart</h3>
+      <p>What sets Purnells Property Maintenance apart is our commitment to quality and customer satisfaction. With over 30 years of experience, we offer personalised service tailored to your unique needs. Our expert team combines craftsmanship with innovative design solutions, ensuring every project reflects your style and enhances functionality. We prioritise open communication throughout the process, keeping you informed and involved every step of the way. Our dedication to using high-quality materials and attention to detail ensures that your kitchen or bathroom not only looks stunning but stands the test of time.</p>
+      <p>Trust us to deliver outstanding results that exceed your expectations.</p>
+      <h3>Get In Touch With Us To Design Your Kitchen Or Bathroom</h3>
+      <p>Ready to create your dream kitchen or bathroom? Get in touch with us today at Purnells Property Maintenance! Our friendly team is eager to discuss your ideas and help you design a space that reflects your style and meets your needs. We offer free consultations to explore design options and provide expert advice tailored to your vision. With our commitment to quality and exceptional service, you can trust us to bring your dream space to life. Contact us now to start your journey toward a beautiful and functional kitchen or bathroom!</p>
+      <img src="assets/kitchen%20luxury%20home.avif" alt="Luxury Kitchen" style="max-width:100%;height:auto;">
+      <img src="assets/bathroom.avif" alt="Modern Bathroom" style="max-width:100%;height:auto;margin-top:1rem;">
+    </section>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var nav = document.getElementById('mainNav');
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+    });
+  </script>
+  <footer>
+    <p>
+      <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+      <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+      &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+    </p>
+  </footer>
+</body>
+</html>
