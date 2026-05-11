@@ -52,18 +52,65 @@
     <nav>
       <ul id="mainNav">
         <li><a href="index.html">Home</a></li>
-        <li><a href="property-maintenance.html">Property Maintenance</a></li>
-        <li><a href="building-services.html" class="active" aria-current="page">Building Services</a></li>
-        <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
-        <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
-        <li><a href="painting-decorating.html">Painting & Decorating</a></li>
-        <li><a href="roofing.html">Roofing</a></li>
-        <li><a href="landscaping.html">Landscaping</a></li>
+        <li class="has-submenu"><a href="#">Our Services</a>
+          <ul class="submenu">
+            <li><a href="property-maintenance.html">Property Maintenance</a></li>
+            <li><a href="building-services.html" class="active" aria-current="page">Building Services</a></li>
+            <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+            <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+            <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+            <li><a href="roofing.html">Roofing</a></li>
+            <li><a href="landscaping.html">Landscaping</a></li>
+          </ul>
+        </li>
         <li><a href="recent-projects.html">Recent Projects</a></li>
         <li><a href="get-in-touch.html">Get in Touch</a></li>
       </ul>
     </nav>
   </header>
+  <style>
+    /* Dropdown styles for Our Services */
+    .has-submenu { position: relative; }
+    .has-submenu > a:after {
+      content: " ▼";
+      font-size: 0.7em;
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      left: 0;
+      top: 100%;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      min-width: 220px;
+      z-index: 1002;
+      padding: 0.5em 0;
+      border-radius: 0 0 8px 8px;
+    }
+    .submenu li { margin: 0; }
+    .submenu a {
+      display: block;
+      padding: 0.5em 1.5em;
+      color: #003366;
+      background: none;
+      border-radius: 0;
+    }
+    .submenu a:hover {
+      background: #e6f0fa;
+    }
+    .has-submenu:hover > .submenu,
+    .has-submenu:focus-within > .submenu {
+      display: block;
+    }
+    @media (max-width: 700px) {
+      .submenu {
+        position: static;
+        box-shadow: none;
+        min-width: 0;
+        border-radius: 0;
+      }
+    }
+  </style>
   <main>
     <section>
       <h2>Professional Building Services In Newport</h2>
@@ -81,6 +128,29 @@
       <img src="assets/Extension.avif" alt="Home Extension" style="max-width:100%;height:auto;">
     </section>
   </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var hamburger = document.getElementById('hamburgerBtn');
+      var nav = document.getElementById('mainNav');
+      hamburger.addEventListener('click', function() {
+        nav.classList.toggle('open');
+      });
+      nav.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          nav.classList.remove('open');
+        });
+      });
+      // Mobile submenu toggle
+      var submenuParent = document.querySelector('.has-submenu > a');
+      submenuParent.addEventListener('click', function(e) {
+        if (window.innerWidth <= 700) {
+          e.preventDefault();
+          var submenu = this.nextElementSibling;
+          submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+        }
+      });
+    });
+  </script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       var hamburger = document.getElementById('hamburgerBtn');
