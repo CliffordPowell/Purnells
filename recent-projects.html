@@ -17,20 +17,31 @@
         }
         @media (max-width: 700px) {
           nav ul {
-            display: none;
+            display: none !important;
             flex-direction: column;
             background: #fff;
             position: absolute;
             top: 70px;
-            left: 0;
-            width: 100vw;
+            right: 1.5rem;
+            left: auto;
+            width: 220px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             margin: 0;
             padding: 1rem 0;
             z-index: 1000;
+            border-radius: 0 0 8px 8px;
           }
           nav ul.open {
-            display: flex;
+            display: flex !important;
+          }
+          nav ul > li {
+            padding: 0.8em 0;
+          }
+          .submenu {
+            display: none !important;
+          }
+          .submenu.open {
+            display: block !important;
           }
           .hamburger {
             display: block;
@@ -73,9 +84,11 @@
               .submenu a:hover {
                 background: #e6f0fa;
               }
-              .has-submenu:hover > .submenu,
-              .has-submenu:focus-within > .submenu {
-                display: block;
+              @media (min-width: 701px) {
+                .has-submenu:hover > .submenu,
+                .has-submenu:focus-within > .submenu {
+                  display: block;
+                }
               }
               @media (max-width: 700px) {
                 .submenu {
@@ -107,7 +120,7 @@
                       <li><a href="landscaping.html">Landscaping</a></li>
                     </ul>
                   </li>
-                  <li><a href="recent-projects.html" class="active" aria-current="page">Recent Projects</a></li>
+                  <li><a href="recent-projects.html"  class="active" aria-current="page">Recent Projects</a></li>
                   <li><a href="get-in-touch.html">Get in Touch</a></li>
                 </ul>
               </nav>
@@ -141,11 +154,23 @@
       var nav = document.getElementById('mainNav');
       hamburger.addEventListener('click', function() {
         nav.classList.toggle('open');
+        // Always close submenu after menu closes (with a slight delay to allow click event to propagate)
+        if (!nav.classList.contains('open')) {
+          setTimeout(function() {
+            var submenu = document.querySelector('.submenu');
+            if (submenu) submenu.classList.remove('open');
+          }, 200);
+        }
       });
+      // Only close menu for real navigation links, not submenu parent
       nav.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          nav.classList.remove('open');
-        });
+        if (!link.closest('.has-submenu') || !link.matches('.has-submenu > a')) {
+          link.addEventListener('click', function() {
+            nav.classList.remove('open');
+            var submenu = document.querySelector('.submenu');
+            if (submenu) submenu.classList.remove('open');
+          });
+        }
       });
       // Mobile submenu toggle
       var submenuParent = document.querySelector('.has-submenu > a');
@@ -153,24 +178,8 @@
         if (window.innerWidth <= 700) {
           e.preventDefault();
           var submenu = this.nextElementSibling;
-          submenu.style.display = (submenu.style.display === 'block') ? 'none' : 'block';
+          submenu.classList.toggle('open');
         }
-      });
-    });
-  </script>
-  <script>
-    // Hamburger menu toggle
-    document.addEventListener('DOMContentLoaded', function() {
-      var hamburger = document.getElementById('hamburgerBtn');
-      var nav = document.getElementById('mainNav');
-      hamburger.addEventListener('click', function() {
-        nav.classList.toggle('open');
-      });
-      // Optional: close menu when a link is clicked (for better UX)
-      nav.querySelectorAll('a').forEach(function(link) {
-        link.addEventListener('click', function() {
-          nav.classList.remove('open');
-        });
       });
     });
   </script>
