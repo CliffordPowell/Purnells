@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery - Purnells Property Maintenance</title>
+    <link rel="stylesheet" href="style.css">
+            <style>
+              /* Dropdown styles for Our Services */
+              .has-submenu { position: relative; }
+              .has-submenu > a:after {
+                content: " ▼";
+                font-size: 0.7em;
+              }
+              .submenu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 100%;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                min-width: 220px;
+                z-index: 1002;
+                padding: 0.5em 0;
+                border-radius: 0 0 8px 8px;
+              }
+              .submenu li { margin: 0; }
+              .submenu a {
+                display: block;
+                padding: 0.5em 1.5em;
+                color: #003366;
+                background: none;
+                border-radius: 0;
+              }
+              .submenu a:hover {
+                background: #e6f0fa;
+              }
+             @media (min-width: 701px) {
+                .has-submenu:hover > .submenu,
+                .has-submenu:focus-within > .submenu {
+                  display: block;
+                }
+              }
+              @media (max-width: 700px) {
+                .submenu {
+                  position: static;
+                  box-shadow: none;
+                  min-width: 0;
+                  border-radius: 0;
+                }
+              }
+ 
+              .gallery-container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .gallery-section {
+            margin-bottom: 60px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .gallery-section h2 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 28px;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 10px;
+        }
+
+        .slideshow-wrapper {
+            position: relative;
+            background: #000;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            animation: fadeIn 0.5s;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide img {
+            width: 100%;
+            height: auto;
+            max-height: 600px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slideshow-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: #222;
+        }
+
+        .slide-counter {
+            color: #fff;
+            font-size: 14px;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .slide-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .slide-btn {
+            background: #d4af37;
+            color: #000;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .slide-btn:hover {
+            background: #e8c547;
+        }
+
+        .slide-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            padding: 15px 20px;
+            background: #222;
+            flex-wrap: wrap;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #666;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .dot.active {
+            background: #d4af37;
+        }
+
+        .auto-play-toggle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background: #222;
+            gap: 10px;
+        }
+
+        .auto-play-label {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .toggle-checkbox {
+            width: 40px;
+            height: 24px;
+            position: relative;
+            cursor: pointer;
+            appearance: none;
+            background: #666;
+            border-radius: 12px;
+            transition: background 0.3s;
+        }
+
+        .toggle-checkbox:checked {
+            background: #d4af37;
+        }
+
+        .toggle-checkbox:before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .toggle-checkbox:checked:before {
+            left: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-container {
+                margin: 20px auto;
+                padding: 0 10px;
+            }
+
+            .gallery-section {
+                padding: 20px;
+                margin-bottom: 40px;
+            }
+
+            .gallery-section h2 {
+                font-size: 22px;
+            }
+
+            .slide img {
+                max-height: 400px;
+            }
+
+            .slideshow-controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .slide-nav {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .slide-counter {
+                width: 100%;
+            }
+
+            .dots-container {
+                max-height: 50px;
+                overflow-y: auto;
+            }
+        }
+    </style>
+</head>
+  <body>
+    <header>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+      <img src="assets/Purnells Property Maintenance Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+      <h1>Purnells Property Maintenance</h1>
+              <nav>
+                <ul id="mainNav">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="has-submenu"><a href="#">Our Services</a>
+                    <ul class="submenu">
+                      <li><a href="property-maintenance.html">Property Maintenance</a></li>
+                      <li><a href="building-services.html">Building Services</a></li>
+                      <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+                      <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+                      <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+                      <li><a href="roofing.html">Roofing</a></li>
+                      <li><a href="landscaping.html">Landscaping</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="recent-projects.html">Recent Projects</a></li>
+                  <li><a href="gallery.html" class="active" aria-current="page">Photo Gallery</a></li>
+                  <li><a href="reviews.html">Reviews & Testimonials</a></li>
+                  <li><a href="get-in-touch.html">Get in Touch</a></li>
+                </ul>
+              </nav>
+      </nav>
+    </header>
+        <main>
+        <div class="gallery-container">
+            <h1 style="text-align: center; color: #333; margin-bottom: 40px;">Photo Gallery</h1>
+
+            <!-- Bathrooms Slideshow -->
+            <div class="gallery-section">
+                <h2>Bathrooms</h2>
+                <div class="slideshow-wrapper" data-category="bathrooms">
+                    <div class="slide active">
+                        <img src="assets/photos/bathrooms/19d97626-c99c-4ca3-b1dc-682e2c0a9389_image_jpeg.webp" alt="Bathroom">
+                    </div>
+                    <div class="slide"><img src="assets/photos/bathrooms/1aedf760-ece3-4814-8f63-472306bd08f4_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/3106cb44-3c10-465d-a1d4-617201460688_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/42b4b024-d651-43ad-94c1-83ff3eed9e82_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/580a83a1-3fbb-4137-a363-afc9c69150d9_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/61aa446d-d4e7-47b2-91b3-a32c5898e517_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/70de18d9-02e0-449a-80c6-b0cea403e44c_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/851435b8-9cd1-483d-b939-d311bf04c003_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/a1683c7c-f9e9-49ef-bd7e-69d4c21bc6a6_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/a78ace07-7667-4acf-980a-383bc083730b_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/c140016e-4e3d-4ff0-b5fc-c7bf7177e393_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/c9678bb3-3463-4abc-810c-be3c48bc7ea3_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/cb957e7b-1bf5-471f-81c5-528df6448542_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/cd922316-22db-4f08-8041-6ebd17587b7e_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/ce4121bc-e1a8-4470-8bf8-6721277a558b_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/f66ecf82-070b-4dda-ba1b-87038eedc70a_image_jpeg.webp" alt="Bathroom"></div>
+                    <div class="slide"><img src="assets/photos/bathrooms/889e5f74-47b5-4663-a61c-c4f06f880bcc_image_jpeg.webp" alt="Bathroom"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('bathrooms')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-bathrooms">1</span> / <span id="total-bathrooms">17</span></div>
+                    <button class="slide-btn" onclick="nextSlide('bathrooms')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-bathrooms" onchange="toggleAutoPlay('bathrooms')">
+                </div>
+                <div class="dots-container" id="dots-bathrooms"></div>
+            </div>
+
+            <!-- Kitchens Slideshow -->
+            <div class="gallery-section">
+                <h2>Kitchens</h2>
+                <div class="slideshow-wrapper" data-category="kitchens">
+                    <div class="slide active">
+                        <img src="assets/photos/kitchens/05041d50-1a56-4fdb-82b4-acd625f07bc9_image_jpeg.webp" alt="Kitchen">
+                    </div>
+                    <div class="slide"><img src="assets/photos/kitchens/244ddf7a-1ded-4129-a95f-6b5494739250_image_jpeg.webp" alt="Kitchen"></div>
+                    <div class="slide"><img src="assets/photos/kitchens/f2f5487d-fff4-4fea-a393-20d24684c75b_image_jpeg.webp" alt="Kitchen"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('kitchens')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-kitchens">1</span> / <span id="total-kitchens">3</span></div>
+                    <button class="slide-btn" onclick="nextSlide('kitchens')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-kitchens" onchange="toggleAutoPlay('kitchens')">
+                </div>
+                <div class="dots-container" id="dots-kitchens"></div>
+            </div>
+
+            <!-- Landscaping Slideshow -->
+            <div class="gallery-section">
+                <h2>Landscaping & Patios</h2>
+                <div class="slideshow-wrapper" data-category="landscaping">
+                    <div class="slide active">
+                        <img src="assets/photos/landscaping/0f54ae00-e674-462b-82e4-5628f7d0652c_image_jpeg.webp" alt="Landscaping">
+                    </div>
+                    <div class="slide"><img src="assets/photos/landscaping/0f5ac950-1ecd-490a-8dfd-9ca0f4edf0b2_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/1ab7be55-9a95-46c4-ab4c-60190f6723c9_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/25be1e1f-02d6-4901-b41d-76559967615f_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/28587302-0e03-4886-8e49-266729eb52ad_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/37075b9c-f028-4a24-aa20-6b47703b9b14_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/45f0e82e-1c23-482e-9856-b0dad3b776ae_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/4a731d40-3b9f-47df-aa10-54cdb6420034_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/53cbac8e-a415-43df-99d5-f135fe3194d7_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/5582098d-d6d5-460a-88d6-be125f17a4c4_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/5945272a-234d-4008-998b-f5f4e6bb994f_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/599a8a7a-52b8-468c-8aa6-44556b7025eb_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/657aada2-44bc-46b5-bc1b-4a75b7eaee86_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/6712b86d-a624-4cb0-b4e2-265e2857dfe9_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/690b20c7-bc29-4b0c-a1ae-2f5cbab6c346_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/7a15b649-d57e-44fe-ab6e-e2141e86cc74_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/7c705f9f-878b-4c4b-8a0c-8e9086363379_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/8bb4bbdd-3419-49cb-9739-3261e90c66e8_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/96af33a3-aa60-4aea-b18b-63f7408f4483_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/96ddc28c-5c7b-4954-9f56-0b7e8da2bbab_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/9b3993d9-dc7f-4055-8f28-0c53414f5a0c_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/a5616559-bd29-4f79-a1d2-371a8c690fab_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/a8a25099-37b7-4235-be82-77811bb79d87_image_jpeg%20(1).webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/aa3b7779-03b7-487d-893a-eab0ab19de80_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/ac0b5c1f-f483-4f4d-af6b-ca380d4987a5_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/ad137fce-ad45-45b7-a2f7-3aa4e2155e3c_image_jpeg%20(1).webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/af3c10a8-fc07-4a1d-9924-12b83ddf7c57_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/b1ff7954-db24-4cdc-90ce-9e0f4bb335a1_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/b20ffb66-6776-4560-bd11-0057880ec62c_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/b3aa133b-a8f6-404b-9939-19e1d964f00f_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/c23b2c68-80fe-4bc8-a7cd-97411f555485_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/d191a311-4b39-41ee-abe9-fbdb3198f4c2_image_jpeg%20(1).webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/d41796c5-991c-4757-97cc-c44a2a1a7ebe_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/d47d7d76-2f52-452c-8e64-07a7aff6ebd5_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/d86439cb-3b46-4d8a-9ff4-5079adc64ba3_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/e8b7ffbd-bf2f-4e20-83b4-3d3b45078a51_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/fe7fe39c-8e7b-4afd-902b-a3d6a5ab7f2e_image_jpeg.webp" alt="Landscaping"></div>
+                    <div class="slide"><img src="assets/photos/landscaping/ffca0ec8-ed56-4b91-b942-fc997b20a364_image_jpeg.webp" alt="Landscaping"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('landscaping')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-landscaping">1</span> / <span id="total-landscaping">38</span></div>
+                    <button class="slide-btn" onclick="nextSlide('landscaping')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-landscaping" onchange="toggleAutoPlay('landscaping')">
+                </div>
+                <div class="dots-container" id="dots-landscaping"></div>
+            </div>
+
+            <!-- Renovations Slideshow -->
+            <div class="gallery-section">
+                <h2>Renovations</h2>
+                <div class="slideshow-wrapper" data-category="renovations">
+                    <div class="slide active">
+                        <img src="assets/photos/renovations/179d6015-77d8-4a09-85f8-8d3427d6b3c5_image_jpeg.webp" alt="Renovation">
+                    </div>
+                    <div class="slide"><img src="assets/photos/renovations/1b2361f1-de5d-40c4-8506-c642277b7911_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/3c02e0a4-1fba-45b3-9ded-7cbe22dbc9e0_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/3edcf953-4abd-49b1-9486-d2a506c90297_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/5a6efaa9-3647-4e99-90f9-4d54b14c5a1b_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/6f165414-02bb-476d-8a63-93b4bfbaddb9_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/73939b52-ee5d-4b7b-b33e-817da56def90_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/77f4f673-bdca-481f-9195-ec4fef407ea8_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/7e750f4f-9081-455f-9266-236e30939d41_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/8f5aeba0-4bd7-4448-b473-743339902697_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/968ef037-6ff5-480a-ab37-09af1ef73033_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/9d8d5c67-2ce4-4142-92c7-89cc00a67a96_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/a3ba925f-f7a4-4e5b-a237-6444f20f3c88_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/a7d3d976-3f06-4ecd-af3c-70adf76180f4_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/b53eab12-b260-4e5e-997c-ae9eaee69b7d_image_jpeg%20(1).webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/b53eab12-b260-4e5e-997c-ae9eaee69b7d_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/c9f85de8-0391-47cf-8eac-ed3f7d267c70_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/dd36ae0b-f2e3-4502-94f4-8337f53ab832_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/e0cf37cd-c3cc-460d-b855-4945ddfe59f2_image_jpeg.webp" alt="Renovation"></div>
+                    <div class="slide"><img src="assets/photos/renovations/eb0344b9-9c8f-4cf8-85d7-2eceb25289ca_image_jpeg.webp" alt="Renovation"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('renovations')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-renovations">1</span> / <span id="total-renovations">20</span></div>
+                    <button class="slide-btn" onclick="nextSlide('renovations')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-renovations" onchange="toggleAutoPlay('renovations')">
+                </div>
+                <div class="dots-container" id="dots-renovations"></div>
+            </div>
+
+            <!-- Roofing Slideshow -->
+            <div class="gallery-section">
+                <h2>Roofing</h2>
+                <div class="slideshow-wrapper" data-category="roofing">
+                    <div class="slide active">
+                        <img src="assets/photos/roofing/3093df20-76b2-4dc8-a83a-aa4a69e8136c_image_jpeg.webp" alt="Roofing">
+                    </div>
+                    <div class="slide"><img src="assets/photos/roofing/3964a2be-8c91-495c-b4e2-65a75cb5275a_image_jpeg.webp" alt="Roofing"></div>
+                    <div class="slide"><img src="assets/photos/roofing/56eade60-a32c-4450-9234-a22ed0db11bb_image_jpeg.webp" alt="Roofing"></div>
+                    <div class="slide"><img src="assets/photos/roofing/9fe195a2-170d-4393-bcd8-a69b2db99b4d_image_jpeg.webp" alt="Roofing"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('roofing')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-roofing">1</span> / <span id="total-roofing">4</span></div>
+                    <button class="slide-btn" onclick="nextSlide('roofing')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-roofing" onchange="toggleAutoPlay('roofing')">
+                </div>
+                <div class="dots-container" id="dots-roofing"></div>
+            </div>
+
+            <!-- Team Slideshow -->
+            <div class="gallery-section">
+                <h2>Our Team</h2>
+                <div class="slideshow-wrapper" data-category="team">
+                    <div class="slide active">
+                        <img src="assets/photos/team/6cdfd2fb-4edd-4bf1-9fc5-0edd79a5c692_image_jpeg.webp" alt="Team">
+                    </div>
+                    <div class="slide"><img src="assets/photos/team/b020d8e4-6c3a-400a-b341-c3e5eb3d75d0_image_jpeg.webp" alt="Team"></div>
+                    <div class="slide"><img src="assets/photos/team/f888ba07-f945-4438-acf3-3cad10c6e98a_image_jpeg.webp" alt="Team"></div>
+                </div>
+                <div class="slideshow-controls">
+                    <button class="slide-btn" onclick="previousSlide('team')">← Previous</button>
+                    <div class="slide-counter"><span id="counter-team">1</span> / <span id="total-team">3</span></div>
+                    <button class="slide-btn" onclick="nextSlide('team')">Next →</button>
+                </div>
+                <div class="auto-play-toggle">
+                    <label class="auto-play-label">Auto-play:</label>
+                    <input type="checkbox" class="toggle-checkbox" id="autoplay-team" onchange="toggleAutoPlay('team')">
+                </div>
+                <div class="dots-container" id="dots-team"></div>
+            </div>
+        </div>
+        <script>
+          document.addEventListener('DOMContentLoaded', function() {
+            var hamburger = document.getElementById('hamburgerBtn');
+            var nav = document.getElementById('mainNav');
+            hamburger.addEventListener('click', function() {
+              nav.classList.toggle('open');
+              // Always close submenu after menu closes (with a slight delay to allow click event to propagate)
+              if (!nav.classList.contains('open')) {
+                setTimeout(function() {
+                  var submenu = document.querySelector('.submenu');
+                  if (submenu) submenu.classList.remove('open');
+                }, 200);
+              }
+            });
+            // Only close menu for real navigation links, not submenu parent
+            nav.querySelectorAll('a').forEach(function(link) {
+              if (!link.closest('.has-submenu') || !link.matches('.has-submenu > a')) {
+                link.addEventListener('click', function() {
+                  nav.classList.remove('open');
+                  var submenu = document.querySelector('.submenu');
+                  if (submenu) submenu.classList.remove('open');
+                });
+              }
+            });
+            // Mobile submenu toggle
+            var submenuParent = document.querySelector('.has-submenu > a');
+            submenuParent.addEventListener('click', function(e) {
+              if (window.innerWidth <= 700) {
+                e.preventDefault();
+                var submenu = this.nextElementSibling;
+                submenu.classList.toggle('open');
+              }
+            });
+          });
+        </script>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 Purnells Property Maintenance. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 14px;">Professional Property Maintenance & Repair Services</p>
+        </div>
+    </footer>
+
+    <script>
+        // Gallery state tracking
+        const galleries = {
+            bathrooms: { current: 1, total: 17, autoplay: false, interval: null },
+            kitchens: { current: 1, total: 3, autoplay: false, interval: null },
+            landscaping: { current: 1, total: 38, autoplay: false, interval: null },
+            renovations: { current: 1, total: 20, autoplay: false, interval: null },
+            roofing: { current: 1, total: 4, autoplay: false, interval: null },
+            team: { current: 1, total: 3, autoplay: false, interval: null }
+        };
+
+        // Initialize dots for each gallery
+        function initializeDots(category) {
+            const dotsContainer = document.getElementById(`dots-${category}`);
+            dotsContainer.innerHTML = '';
+            for (let i = 1; i <= galleries[category].total; i++) {
+                const dot = document.createElement('div');
+                dot.className = 'dot' + (i === 1 ? ' active' : '');
+                dot.onclick = () => goToSlide(category, i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        // Initialize all galleries
+        function initializeAllGalleries() {
+            Object.keys(galleries).forEach(category => {
+                initializeDots(category);
+                updateGalleryDisplay(category);
+            });
+        }
+
+        function showSlide(category, n) {
+            const gallery = galleries[category];
+            const slides = document.querySelectorAll(`[data-category="${category}"] .slide`);
+            const dots = document.querySelectorAll(`#dots-${category} .dot`);
+
+            if (n > gallery.total) {
+                gallery.current = 1;
+            } else if (n < 1) {
+                gallery.current = gallery.total;
+            } else {
+                gallery.current = n;
+            }
+
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[gallery.current - 1].classList.add('active');
+
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[gallery.current - 1].classList.add('active');
+
+            updateCounters(category);
+        }
+
+        function nextSlide(category) {
+            showSlide(category, galleries[category].current + 1);
+        }
+
+        function previousSlide(category) {
+            showSlide(category, galleries[category].current - 1);
+        }
+
+        function goToSlide(category, n) {
+            showSlide(category, n);
+        }
+
+        function updateCounters(category) {
+            document.getElementById(`counter-${category}`).textContent = galleries[category].current;
+        }
+
+        function updateGalleryDisplay(category) {
+            showSlide(category, galleries[category].current);
+        }
+
+        function toggleAutoPlay(category) {
+            const checkbox = document.getElementById(`autoplay-${category}`);
+            const gallery = galleries[category];
+
+            if (checkbox.checked) {
+                gallery.autoplay = true;
+                gallery.interval = setInterval(() => {
+                    nextSlide(category);
+                }, 3000);
+            } else {
+                gallery.autoplay = false;
+                clearInterval(gallery.interval);
+            }
+        }
+
+        // Hamburger menu functionality
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const navBar = document.getElementById('navBar');
+
+        hamburgerBtn.addEventListener('click', () => {
+            navBar.style.display = navBar.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Close menu when a link is clicked
+        const navLinks = document.querySelectorAll('.nav-link, .dropdown-menu a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 700) {
+                    navBar.style.display = 'none';
+                }
+            });
+        });
+
+        // Show/hide nav based on viewport size
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 700) {
+                navBar.style.display = 'flex';
+            } else {
+                navBar.style.display = 'none';
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', initializeAllGalleries);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') previousSlide('bathrooms'); // Default to first gallery
+            if (e.key === 'ArrowRight') nextSlide('bathrooms');
+        });
+    </script>
+</body>
+</html>

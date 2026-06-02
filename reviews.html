@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      <style>
+        /* Hamburger styles for mobile */
+        .hamburger {
+          display: none;
+          background: none;
+          border: none;
+          font-size: 2rem;
+          position: absolute;
+          right: 1.5rem;
+          top: 1.5rem;
+          z-index: 1001;
+          color: #003366;
+          cursor: pointer;
+        }
+        @media (max-width: 700px) {
+          nav ul {
+            display: none !important;
+            flex-direction: column;
+            background: #fff;
+            position: absolute;
+            top: 70px;
+            right: 1.5rem;
+            left: auto;
+            width: 220px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin: 0;
+            padding: 1rem 0;
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+          }
+          nav ul.open {
+            display: flex !important;
+          }
+          nav ul > li {
+            padding: 0.8em 0;
+          }
+          .submenu {
+            display: none !important;
+          }
+          .submenu.open {
+            display: block !important;
+          }
+          .hamburger {
+            display: block;
+          }
+          header {
+            padding-top: 2.5rem;
+          }
+        }
+      </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Maintenance | Purnells</title>
+            <style>
+              /* Dropdown styles for Our Services */
+              .has-submenu { position: relative; }
+              .has-submenu > a:after {
+                content: " ▼";
+                font-size: 0.7em;
+              }
+              .submenu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 100%;
+                background: #fff;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                min-width: 220px;
+                z-index: 1002;
+                padding: 0.5em 0;
+                border-radius: 0 0 8px 8px;
+              }
+              .submenu li { margin: 0; }
+              .submenu a {
+                display: block;
+                padding: 0.5em 1.5em;
+                color: #003366;
+                background: none;
+                border-radius: 0;
+              }
+              .submenu a:hover {
+                background: #e6f0fa;
+              }
+              @media (min-width: 701px) {
+                .has-submenu:hover > .submenu,
+                .has-submenu:focus-within > .submenu {
+                  display: block;
+                }
+              }
+              @media (max-width: 700px) {
+                .submenu {
+                  position: static;
+                  box-shadow: none;
+                  min-width: 0;
+                  border-radius: 0;
+                }
+              }
+            </style>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">&#9776;</button>
+      <img src="assets/Purnells Property Maintenance Logo.avif" alt="Purnells Property Maintenance Logo" class="logo">
+      <h1>Purnells Property Maintenance</h1>
+              <nav>
+                <ul id="mainNav">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="has-submenu"><a href="#">Our Services</a>
+                    <ul class="submenu">
+                      <li><a href="property-maintenance.html">Property Maintenance</a></li>
+                      <li><a href="building-services.html">Building Services</a></li>
+                      <li><a href="kitchens-bathrooms.html">Kitchens & Bathrooms</a></li>
+                      <li><a href="carpentry-joinery.html">Carpentry & Joinery</a></li>
+                      <li><a href="painting-decorating.html">Painting & Decorating</a></li>
+                      <li><a href="roofing.html">Roofing</a></li>
+                      <li><a href="landscaping.html">Landscaping</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="recent-projects.html">Recent Projects</a></li>                  <li><a href="gallery.html">Photo Gallery</a></li>                  <li><a href="reviews.html"  class="active" aria-current="page">Reviews & Testimonials</a></li>
+                  <li><a href="get-in-touch.html">Get in Touch</a></li>
+                </ul>
+              </nav>
+      </nav>
+    </header>
+
+    <main>
+      <section class="reviews-container">
+        <h2 style="text-align:center; color:#679A79;">Customer Reviews</h2>
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; justify-content:center; margin-bottom:1rem;">
+          <label for="ratingFilter" style="font-weight:600; color:#003366;">Filter by rating:</label>
+          <select id="ratingFilter" style="padding:0.4rem 0.6rem; border:1px solid #ccc; border-radius:6px;">
+            <option value="all">All ratings</option>
+            <option value="5">5 only</option>
+            <option value="4">4 and up</option>
+            <option value="3">3 and up</option>
+            <option value="2">2 and up</option>
+            <option value="1">1 and up</option>
+          </select>
+
+          <label for="sortBy" style="font-weight:600; color:#003366;">Sort by:</label>
+          <select id="sortBy" style="padding:0.4rem 0.6rem; border:1px solid #ccc; border-radius:6px;">
+            <option value="date-desc">Date (newest first)</option>
+            <option value="date-asc">Date (oldest first)</option>
+            <option value="rating-desc">Rating (highest first)</option>
+            <option value="rating-asc">Rating (lowest first)</option>
+          </select>
+        </div>
+        <div id="reviewsList" class="status-message">Loading reviews...</div>
+      </section>
+    </main>
+
+    <script id="reviewsData" type="application/json">
+      {
+        "reviews": [
+          {
+            "name": "SuzeS",
+            "title": "New kitchen.. absolutely perfect",
+            "rating": 5,
+            "date": "2024-10-01",
+            "review": "Chris and his team installed a kitchen for me, brilliant job. Turned up when they said they would, very polite and respectful. Very helpful and understanding when I changed things. Great lads, would highly recommend them. They even cleaned up after themselves. Perfect and I love my new kitchen."
+          },
+          {
+            "name": "LizF",
+            "title": "Garden Makeover.",
+            "rating": 5,
+            "date": "2024-04-13",
+            "review": "I can’t recommend Chris and his team highly enough for the fantastic job they did transforming my garden. They were always punctual, and their attention to detail and care throughout the project was exceptional. I’m absolutely delighted with the results—from the rendering and painting to the brickwork and the beautiful raised bed. Thank you!"
+          },
+          {
+            "name": "DeniseF",
+            "title": "Fantastic kitchen fitting experience.",
+            "rating": 5,
+            "date": "2024-04-13",
+            "review": "Chris and all the guys recently fitted my new kitchen. Well to say I’m delighted with it all is an understatement. They were reliable, professional, friendly the quality of the work is exceptional. After each day they cleaned up any mess, I cannot praise Purnells Property Maintenance enough. When we are ready for our new bathroom fitted Chris and the guys will be my first and only port of call. We have had a couple of totally rubbish tradesmen in the past but Purnells Property Maintenance, I will recommend to anyone and everyone ⭐️⭐️⭐️⭐️⭐️ for everything from reliability, quality of work and the time of completion. A fantastic team!! Thank you so much to Chris and the guys for my dream kitchen. I will see you all again for our new bathroom 😊😊😊"
+          },
+          {
+            "name": "RejiA",
+            "title": "Fully recommended.",
+            "rating": 5,
+            "date": "2025-10-02",
+            "review": "The work from Chris and the team was excellent, the current work completed and as a customer I am fully satisfied with the results, decided to give another bigger job at the house to complete my kitchen. You could ask the team for any of your doubts or concerns, they are always happy to answer."
+          },
+          {
+            "name": "MacieC",
+            "title": "10/10.",
+            "rating": 5,
+            "date": "2025-09-05",
+            "review": "Would highly recommend Purnells Property Maintenance. Very friendly, polite, and professional service. Would definitely use them again! Level of service was excellent and the quality of work completed was to a high standard. Very efficient in completing the work."
+          },
+          {
+            "name": "DavidR",
+            "title": "Large patio, steps & fencing project completed promptly, and to a very high standard.",
+            "rating": 5,
+            "date": "2025-07-27",
+            "review": "Absolutely highly recommend Chris Purnell for any building or renovation work. They have just completed a fabulous job transforming our garden. Great help and guidance all the way. New sandstone patio plus full width of garden steps…. and to finish it off slatted fencing and glass balustrade. Just amazing we are over the moon. Enjoyed a bbq last night admiring it all. Thumbs up from us, don’t think twice for any of your home improvement needs. A clean, polite and reliable team."
+          },
+          {
+            "name": "JayW",
+            "title": "Great service, superb quality.",
+            "rating": 5,
+            "date": "2025-07-13",
+            "review": "I could not recommend Purnells more. The bathroom renovation they have done for me is stunning. They were friendly and helpful through the entire process and asked for my input throughout which made me feel at ease. The standard of workmanship is second to none. The project did run quite far over the estimated completion date but in my opinion that’s an acceptable trade off for the level of quality. Everything was done with precision and no corners cut and I couldn’t be happier with the end result. I’ve already asked for a quote for a new project. Thank you Chris and team."
+          },
+          {
+            "name": "JulieW",
+            "title": "Demolish old decking and build up to a raised patio",
+            "rating": 5,
+            "date": "2025-06-02",
+            "review": "Absolutely thrilled with the work Chris and the boys have done. Polite, respectful, honest guys and very flexible. To say the job was a challenge is an understatement: 90 sq ft of porcelain tiles. We do not have a side entrance, so hardcore came through the house, and they left it really clean each day. I would recommend this team over and over again. They went from demolishing my rotting decking to creating a work of art. I will put some pictures on Chris's website for you to see. I can’t say anything constructively negative and would definitely use them again."
+          },
+          {
+            "name": "KathrineR",
+            "title": "Excellent service.",
+            "rating": 5,
+            "date": "2025-05-10",
+            "review": "Would be happy to recommend, work was carried out a high standard at our care home. The health and safety of our residents was always a top priority and could not be faulted on this. Will definitely be using again in the future."
+          },
+          {
+            "name": "SteveP",
+            "title": "Kitchen Refit",
+            "rating": 5,
+            "date": "2025-04-19",
+            "review": "Had a kitchen refit done by Chris & the team which included plastering ,electrics, plumbing, tiling as well as the kitchen worktops, units and doors.Arrived on time each day, did a full days work and cleaned up as mess at the end of the day.I have used Purnells Property Maintenance for a number of projects over the last few years and would highly recommend them."
+          },
+          {
+            "name": "SteveW",
+            "title": "Garden Walls.",
+            "rating": 5,
+            "date": "2025-04-06",
+            "review": "This is the first time I have used Purnells property maintenance. The company service was Excellent, the workmanship to a very high standard and good value for money. I would be very happy to recommend this company ,This is the first time I have used Purnells property maintenance. The service was excellent the workmanship was to a very high standard and good value. I would recommend this company to anyone looking for building work."
+          },
+          {
+            "name": "HeatherM",
+            "title": "Excellent Company.",
+            "rating": 5,
+            "date": "2025-03-25",
+            "review": "Purnells is a very professional Company that provided a first class service with painting, plastering, re roofing and electrics. They arrived on time daily and couldn't be faulted on the quality of their work. They were polite and tidy. We would strongly recommend this Company."
+          },
+          {
+            "name": "PhilippaC",
+            "title": "Patio/Garden",
+            "rating": 5,
+            "date": "2025-02-20",
+            "review": "Would thoroughly recommend Chris and his team. Excellent quality workmanship and attention to detail."
+          },
+          {
+            "name": "CharlesY",
+            "title": "Fantastic customer service.",
+            "rating": 5,
+            "date": "2025-02-12",
+            "review": "Do not hesitate to use Purnells property maintenance for all your building needs. Polite , punctual and got our garden wall re-built to a high standard of workmanship. Chris has a no nonsense approach and offers great advice. As soon as the job was completed the site was left clean and tidy. Great customer service all round at a competitive price. Thank you to all involved ."
+          },
+          {
+            "name": "DavidG",
+            "title": "House Renovation.",
+            "rating": 5,
+            "date": "2025-01-31",
+            "review": "Found that Chris and his team were very helpful and knowledgeable, I found them to be very reliable and trustworthy. The costing of the work done was competitively priced and the team did a great job in renovating the house. I would definitely recommend them and use again."
+          },
+          {
+            "name": "RossP",
+            "title": "House plastered.",
+            "rating": 5,
+            "date": "2025-01-27",
+            "review": "Well what can I say Chris and the team plastered my entire house and had it painted in no time.\nThey left no mess always cleaned up after themselves.\nTop team 100% recommend."
+          },
+          {
+            "name": "JoyalB",
+            "title": "Very good.",
+            "rating": 5,
+            "date": "2025-01-13",
+            "review": "Level of service was good overall we are happy withthe result. Would use them again"
+          },
+          {
+            "name": "ValerieL",
+            "title": "Excellent.",
+            "rating": 5,
+            "date": "2025-01-13",
+            "review": "Purnell’s did an excellent job on my kitchen and bathroom. They were very efficient and polite and left my house clean and tidy. I would highly recommend them. A good job well done."
+          },
+          {
+            "name": "AsaW",
+            "title": "Purnells Property maintenance.",
+            "rating": 5,
+            "date": "2024-12-07",
+            "review": "Chris and team have done several jobs on our house. The standard of work is always high quality and Chris is always very accommodating, punctual and communicates well. Would recommend to anyone looking to get a job done on their home."
+          },
+          {
+            "name": "AnnaS",
+            "title": "Can only recommend",
+            "rating": 4,
+            "date": "2024-10-13",
+            "review": "Chris and his guys have been very good. Any enquiries get answered quickly and in detail - Chris will explain step by step what a job requires and the kind of labour that is involved. Appointments are reliable and the time frames given are accurate. The quality of the work is great and due to Chris' experience and connections he can address and fix a multitude of issues. Can only recommend hiring him!"
+          },
+          {
+            "name": "RuthJ",
+            "title": "Highly recommended",
+            "rating": 5,
+            "date": "2024-10-01",
+            "review": "Highly recommend Chris and his team, have used them again and again (roof replacement this time). Always happy to go that extra mile to ensure customer is happy. Good quality workmanship, stunning roof, polite and respectful team"
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var hamburger = document.getElementById('hamburgerBtn');
+        var nav = document.getElementById('mainNav');
+
+        hamburger.addEventListener('click', function() {
+          nav.classList.toggle('open');
+          if (!nav.classList.contains('open')) {
+            setTimeout(function() {
+              var submenu = document.querySelector('.submenu');
+              if (submenu) submenu.classList.remove('open');
+            }, 200);
+          }
+        });
+
+        nav.querySelectorAll('a').forEach(function(link) {
+          if (!link.closest('.has-submenu') || !link.matches('.has-submenu > a')) {
+            link.addEventListener('click', function() {
+              nav.classList.remove('open');
+              var submenu = document.querySelector('.submenu');
+              if (submenu) submenu.classList.remove('open');
+            });
+          }
+        });
+
+        var submenuParent = document.querySelector('.has-submenu > a');
+        submenuParent.addEventListener('click', function(e) {
+          if (window.innerWidth <= 700) {
+            e.preventDefault();
+            var submenu = this.nextElementSibling;
+            submenu.classList.toggle('open');
+          }
+        });
+
+        function escapeHtml(text) {
+          var div = document.createElement('div');
+          div.textContent = text;
+          return div.innerHTML;
+        }
+
+        function renderStars(rating) {
+          var safeRating = Math.max(0, Math.min(5, Number(rating) || 0));
+          var full = '⭐️'.repeat(Math.round(safeRating));
+          var empty = '☆'.repeat(5 - Math.round(safeRating));
+          return full + empty + ' (' + safeRating + '/5)';
+        }
+
+        function parseDate(dateValue) {
+          var parsed = new Date(dateValue);
+          return isNaN(parsed.getTime()) ? new Date(0) : parsed;
+        }
+
+        function renderReviewList(reviews, ratingFilterValue, sortByValue) {
+          var filtered = reviews.filter(function(review) {
+            if (ratingFilterValue === 'all') {
+              return true;
+            }
+            var minRating = Number(ratingFilterValue);
+            return Number(review.rating) >= minRating;
+          });
+
+          filtered.sort(function(a, b) {
+            if (sortByValue === 'rating-desc') {
+              return Number(b.rating || 0) - Number(a.rating || 0);
+            }
+            if (sortByValue === 'rating-asc') {
+              return Number(a.rating || 0) - Number(b.rating || 0);
+            }
+            if (sortByValue === 'date-asc') {
+              return parseDate(a.date) - parseDate(b.date);
+            }
+            return parseDate(b.date) - parseDate(a.date);
+          });
+
+          var reviewsList = document.getElementById('reviewsList');
+
+          if (!filtered.length) {
+            reviewsList.className = 'status-message';
+            reviewsList.textContent = 'No reviews match the selected filter.';
+            return;
+          }
+
+          reviewsList.className = '';
+          reviewsList.innerHTML = filtered.map(function(review) {
+            var titleHtml = review.title
+              ? '<h3 class="review-title">' + escapeHtml(review.title) + '</h3>'
+              : '';
+            return '<article class="review-card">' +
+              '<div class="review-header">' +
+                '<div class="review-name">' + escapeHtml(review.name || 'Anonymous') + '</div>' +
+                '<div class="review-date">' + escapeHtml(review.date || '') + '</div>' +
+              '</div>' +
+              titleHtml +
+              '<div class="review-rating">' + renderStars(review.rating) + '</div>' +
+              '<p class="review-text">' + escapeHtml(review.review || '') + '</p>' +
+            '</article>';
+          }).join('');
+        }
+
+        try {
+          var dataScript = document.getElementById('reviewsData');
+          var data = JSON.parse(dataScript.textContent);
+          var reviews = Array.isArray(data.reviews) ? data.reviews : [];
+          var reviewsList = document.getElementById('reviewsList');
+          var ratingFilter = document.getElementById('ratingFilter');
+          var sortBy = document.getElementById('sortBy');
+
+          if (!reviews.length) {
+            reviewsList.className = 'status-message';
+            reviewsList.textContent = 'No reviews added yet.';
+            return;
+          }
+
+          function applyFilterAndSort() {
+            renderReviewList(reviews, ratingFilter.value, sortBy.value);
+          }
+
+          ratingFilter.addEventListener('change', applyFilterAndSort);
+          sortBy.addEventListener('change', applyFilterAndSort);
+          applyFilterAndSort();
+        } catch (error) {
+          console.error('Embedded review data error:', error);
+            var reviewsList = document.getElementById('reviewsList');
+            reviewsList.className = 'status-message';
+            reviewsList.textContent = 'Unable to load embedded review data. Please check the JSON inside this page.';
+        }
+      });
+    </script>
+
+    <footer>
+      <p>
+        <strong>Email:</strong> <a href="mailto:purnellsbuildandrender@yahoo.co.uk">purnellsbuildandrender@yahoo.co.uk</a> &nbsp;|&nbsp;
+        <strong>Phone:</strong> <a href="tel:07913346459">07913 346459</a><br>
+        &copy; 2026 Purnells Property Maintenance. Site courtesy of <a href="https://www.cliffordpowellconsulting.co.uk/" target="_blank" rel="noopener">Clifford-Powell Consulting Ltd.</a>
+      </p>
+    </footer>
+  </body>
+</html>
